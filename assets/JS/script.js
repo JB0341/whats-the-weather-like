@@ -1,22 +1,62 @@
-const APIKey = '5bc593d5b6a903eb1bcff74b89d2892a';
-
-function getLoction(cityName){
-    const APIUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${APIKey}'
-    fetch(APIUrl).then(function (response){
+let cities = JSON.parse(localStorage.getItem('cities')) || [];
+const cityNameEl = $('#cityName');
+const apiKey = '5bc593d5b6a903eb1bcff74b89d2892a';
+//server side api function for weather by city
+function getWeather(cityName) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+    fetch(apiUrl).then(function (response) {
         return response.json()
-    }).then(function(data){
-        const lat = data[0].lat;
-        const lon = data[0].lon;
-        getWeather(lat, lon)
-    }) 
-}
-
-function getWeather(lat, lon){
-    const APIUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${APIkey}'
-    fetch(APIUrl).then(function (response){
-        return response.json()
-    }).then(function(data){
+    }).then(function (data) {
         console.log(data)
     })
 }
-getLocation('lexington');
+
+function getForecast(cityName) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`
+    fetch(apiUrl).then(function (response) {
+        return response.json()
+    }).then(function (data) {
+        console.log(data)
+        const forecasts = data.list || [];
+
+        for (let i = 0; i < forecasts.length; i = i + 8) {
+            const forecast = forecasts[i];
+            console.log(forecast);
+        }
+    })
+}
+
+function createCityCard(task) {
+    const cityCardEl = $('<div class="task card mb-3 p-3">');
+    const cityNameEl = $('<h3').text(task.cityName);
+
+    $('#city-history').append(cityCardEl);
+    cityCardEl.append(cityNameEl);
+}
+
+//function to add input data and convert it to an array in local storage
+function addCitySearch(event) {
+    event.preventDefault();
+    if (!cities) {
+        cities = [];
+    }
+
+    let city = {
+        cityName: $('#cityName').val().trim(),
+    }
+
+    cities.push(city);
+
+    localStorage.setItem('cities', JSON.stringify(cities));
+
+
+}
+$("#add-city").on('submit', addCitySearch);
+
+getWeather('lexington');
+getForecast('lexington');
+searchCity('lexington');
+
+
+
+//event delegation
