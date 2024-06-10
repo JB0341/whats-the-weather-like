@@ -1,22 +1,22 @@
-let city;
-const APIKey = '23ee27ae7fea00b733ff0487c918a15a';
-const url = `api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={23ee27ae7fea00b733ff0487c918a15a}`;
+const APIKey = '5bc593d5b6a903eb1bcff74b89d2892a';
 
+function getLaction(cityName){
+    const APIUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${APIKey}'
+    fetch(APIUrl).then(function (response){
+        return response.json()
+    }).then(function(data){
+        const lat = data[0].lat;
+        const lon = data[0].lon;
+        getWeather(lat, lon)
+    }) 
+}
 
-const xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-        console.log('XMLHttpRequest Response \n-------------');
-        console.log(xhr.response);
-    }
-};
-xhr.open('GET', requestUrl);
-xhr.send();
-
-$.ajax({
-    url:requestUrl,
-    method: 'GET',
-}).then(function (response) {
-    console.log('Ajax Response \n----------');
-    console.log(response);
-});
+function getWeather(lat, lon){
+    const APIUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={APIkey}'
+    fetch(APIUrl).then(function (response){
+        return response.json()
+    }).then(function(data){
+        console.log(data)
+    })
+}
+getLaction('lexington, ky');
