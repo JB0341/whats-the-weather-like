@@ -24,7 +24,7 @@ function getWeather(cityName) {
 
     })
 } 
-
+//utilize server side api to get the future weather forecast.
 function getForecast(cityName) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`
     fetch(apiUrl).then(function (response) {
