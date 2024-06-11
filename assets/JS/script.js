@@ -13,8 +13,8 @@ function getWeather(cityName) {
         const wind = data.wind.speed;
         const humidity = data.main.humidity;
         const todaysForecast = `
-        <div>
-            <h4>${cityName}</h4>
+        <div class="m-3 p-3">
+            <h3 class="m-2 p-2">${cityName}</h3>
             <p>Temp: ${temp}°F</p>
             <p>Wind: ${wind}</p>
             <p>Humidity: ${humidity}</p>
@@ -41,8 +41,8 @@ function getForecast(cityName) {
             const wind = forecast.wind.speed;
             const humidity = forecast.main.humidity;
             const futureCast = `
-            <div>
-                <h4>${cityName}
+            <div class="m-3 p-3">
+                <h3 class="m-2 p-2">${cityName}</h3>
                 <p>Temp: ${temp}°F</p>
                 <p>Wind: ${wind}</p>
                 <p>Humidity: ${humidity}</p>
