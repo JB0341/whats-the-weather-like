@@ -1,0 +1,25 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.lanes {
+    min-height: 60vh;
+}
+
+.task-card {
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.task-card:hover {
+    cursor: grab;
+}
+
+.card {
+    background-color: linear-gradient(150deg, rgb(114, 187, 255) rgb(248, 96, 96) ); !important;
+    left: 0 !important; 
+    top: 0 !important;
+    position: static !important;
+    z-index: 1 !important;
+}
