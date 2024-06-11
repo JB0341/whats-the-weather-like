@@ -15,7 +15,7 @@ function getWeather(cityName) {
         const todaysForecast = `
         <div>
             <h4>${cityName}</h4>
-            <p>Temp: ${temp}</p>
+            <p>Temp: ${temp}°F</p>
             <p>Wind: ${wind}</p>
             <p>Humidity: ${humidity}</p>
         </div>
@@ -43,9 +43,9 @@ function getForecast(cityName) {
             const futureCast = `
             <div>
                 <h4>${cityName}
-                <p>${temp}</p>
-                <p>${wind}</p>
-                <p>${humidity}</p>
+                <p>Temp: ${temp}°F</p>
+                <p>Wind: ${wind}</p>
+                <p>Humidity: ${humidity}</p>
             </div>
             `
             $('#forecastDisplay').append(futureCast);
