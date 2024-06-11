@@ -3,7 +3,7 @@ const cityNameEl = $('#cityName');
 const apiKey = '5bc593d5b6a903eb1bcff74b89d2892a';
 //server side api function for weather by city
 function getWeather(cityName) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${apiKey}`
     fetch(apiUrl).then(function (response) {
         return response.json()
     }).then(function (data) {
@@ -15,9 +15,9 @@ function getWeather(cityName) {
         const todaysForecast = `
         <div>
             <h4>${cityName}</h4>
-            <p>${temp}</p>
-            <p>${wind}</p>
-            <p>${humidity}</p>
+            <p>Temp: ${temp}</p>
+            <p>Wind: ${wind}</p>
+            <p>Humidity: ${humidity}</p>
         </div>
         `
         $('#weatherDisplay').append(todaysForecast);
@@ -26,7 +26,7 @@ function getWeather(cityName) {
 } 
 
 function getForecast(cityName) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`
     fetch(apiUrl).then(function (response) {
         return response.json()
     }).then(function (data) {
